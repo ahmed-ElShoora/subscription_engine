@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\AuthController;
+use App\Http\Controllers\Api\PlanController;
+
 Route::group(['prefix' => 'v1'], function () {
 
     //user routes [login, register, me, logout]
@@ -13,6 +15,9 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('/logout', [AuthController::class, 'logout']);
     });
     
+    //plans routes [get all plans]
+    Route::get('/plans', PlanController::class);
+
 
 
 });
