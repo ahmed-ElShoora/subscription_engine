@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\PlanController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\UserTransactionsController;
+use App\Http\Controllers\Api\PurchaseController;
 
 Route::group(['prefix' => 'v1'], function () {
 
@@ -25,6 +26,9 @@ Route::group(['prefix' => 'v1'], function () {
 
     //user transactions route
     Route::get('/transactions', UserTransactionsController::class)->middleware('auth:sanctum');
+
+    //plans purchase route
+    Route::post('/purchase-plan', [PurchaseController::class, 'purchasePlan'])->middleware('auth:sanctum');
 
 
 });

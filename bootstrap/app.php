@@ -15,6 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->redirectGuestsTo(null);
     })
+    ->withSchedule(function (Schedule $schedule) {
+        $schedule->command('subscription:check-end-trail-task')->dailyAt('01:00');
+    })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->render(function (\Throwable $e, $request) {
             return response()->json([

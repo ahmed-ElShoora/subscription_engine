@@ -11,7 +11,7 @@ class PlanController extends Controller
     use ApiResponse;
     public function __invoke()
     {
-        $plans = Plan::select('id', 'name', 'month_price', 'year_price', 'trail_days')->get();
+        $plans = Plan::select('id', 'name', 'month_price', 'year_price', 'trail_days', 'currency')->get();
         return $this->successResponse($plans,'Plans retrieved successfully');
     }
 }
