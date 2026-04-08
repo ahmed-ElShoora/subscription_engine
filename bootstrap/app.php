@@ -18,7 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->render(function (\Throwable $e, $request) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => $e->getMessage(),
                 'errors' => [],
             ], 401);

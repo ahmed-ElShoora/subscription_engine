@@ -12,7 +12,7 @@ trait ApiResponse
         int $statusCode = 200
     ): JsonResponse {
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => $message,
             'data' => $data,
         ], $statusCode);
@@ -24,7 +24,7 @@ trait ApiResponse
         int $statusCode = 400
     ): JsonResponse {
         return response()->json([
-            'success' => false,
+            'status' => false,
             'message' => $message,
             'errors' => $errors,
         ], $statusCode);
