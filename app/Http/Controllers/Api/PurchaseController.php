@@ -18,7 +18,7 @@ class PurchaseController extends Controller
     public function purchasePlan(PurchaseRequest $request)
     {
         $result = $this->purchaseService->proccesPurchase($request->validated());
-        if($request->type == "trail"){
+        if($request->type == "trial"){
             if($result['status']){
                 return $this->successResponse(
                     new UserResource($result['data']),

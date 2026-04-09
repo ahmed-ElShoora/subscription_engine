@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->enum('status', ['new', 'trail', 'active', 'past_due', 'canceled'])->default('new');
+            $table->enum('status', ['new', 'trial', 'active', 'past_due', 'canceled'])->default('new');
             $table->dateTime('subscription_ends_at')->nullable();
             $table->unsignedBigInteger('plan_id')->nullable();
             $table->foreign('plan_id')->references('id')->on('plans')->nullOnDelete();

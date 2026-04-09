@@ -9,13 +9,13 @@ class PurchaseService
     //check if user want to start trial or buy plan now
     public function proccesPurchase(array $data)
     {
-        if($data['type'] == 'trail'){
-            return $this->startTrail($data);
+        if($data['type'] == 'trial'){
+            return $this->startTrial($data);
         }
         return $this->purchasePlan($data);
     }
     //if user want start trial
-    public function startTrail(array $data)
+    public function startTrial(array $data)
     {
         //check if user already start trial before
         if(auth()->user()->status != 'new'){
@@ -25,9 +25,9 @@ class PurchaseService
             ];
         }
         //if not start trial before give him access to trial plan for X days
-        $days_count = Plan::find($data['plan_id'])->trail_days;
+        $days_count = Plan::find($data['plan_id'])->trial_days;
         auth()->user()->update([
-            'status' => 'trail',
+            'status' => 'trial',
             'subscription_ends_at' => now()->addDays($days_count),
             'plan_id' => $data['plan_id']
         ]);

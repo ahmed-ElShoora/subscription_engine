@@ -26,14 +26,14 @@ class PurchaseRequest extends FormRequest
      */
     public function rules(): array
     {
-        if($this->type == 'trail'){
+        if($this->type == 'trial'){
             return [
-                'type' => 'required|in:trail,purchase',
+                'type' => 'required|in:trial,purchase',
                 'plan_id' => 'required|exists:plans,id',
             ];
         }
         return [
-            'type' => 'required|in:trail,purchase',
+            'type' => 'required|in:trial,purchase',
             'plan_id' => 'required|exists:plans,id',
             'time' => 'required|in:month,year',
             'card_number' => 'required|digits:16',

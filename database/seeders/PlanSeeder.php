@@ -17,14 +17,14 @@ class PlanSeeder extends Seeder
             'name' => 'Basic',
             'month_price' => 9.99,
             'year_price' => 99.99,
-            'trail_days' => 7,
+            'trial_days' => 7,
         ]);
         //create pro plan
         Plan::create([
             'name' => 'Pro',
             'month_price' => 19.99,
             'year_price' => 199.99,
-            'trail_days' => 7,
+            'trial_days' => 7,
         ]);
     }
 }

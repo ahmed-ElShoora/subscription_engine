@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->decimal('month_price', 4, 2);
             $table->decimal('year_price', 4, 2);
-            $table->integer('trail_days')->default(7);
+            $table->integer('trial_days')->default(7);
             $table->timestamps();
         });
     }
