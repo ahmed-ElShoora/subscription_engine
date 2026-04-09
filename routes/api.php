@@ -7,7 +7,7 @@ use App\Http\Controllers\Api\PlanController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\UserTransactionsController;
 use App\Http\Controllers\Api\PurchaseController;
-
+use App\Http\Controllers\Api\TestPlanController;
 Route::group(['prefix' => 'v1'], function () {
 
     //user routes [login, register, me, logout]
@@ -17,6 +17,9 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('/me', [AuthController::class, 'me']);
         Route::post('/logout', [AuthController::class, 'logout']);
     });
+
+    //test use have plan or not
+    Route::get('/test-plan', TestPlanController::class)->middleware(['auth:sanctum','check.plan']);
     
     //plans routes [get all plans]
     Route::get('/plans', PlanController::class);

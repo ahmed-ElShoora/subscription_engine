@@ -15,7 +15,6 @@ Laravel RESTful API for managing subscription plans, trials, and payments.
 3. php artisan key:generate
 4. php artisan migrate
 5. php artisan db:seed
-6. php artisan optimize:clear
 
 ## run project
 1. in terminal 1 : php artisan serve --port=8000
@@ -23,3 +22,9 @@ Laravel RESTful API for managing subscription plans, trials, and payments.
 3. in terminal 3 : php artisan schedule:run
 
 note : in production run command 3 in cron jop : [* * * * * php /path-to-project/artisan schedule:run >> /dev/null 2>&1]
+
+## user for test
+1. email = test@test.com
+2. password = password
+
+## i create route for test if you in plan or not , this route is [TestUserHavePlan] in Postman Colliction

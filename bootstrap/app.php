@@ -5,7 +5,7 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Console\Scheduling\Schedule;
-
+use App\Http\Middleware\CheckUserHavePlan;
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
@@ -15,6 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->redirectGuestsTo(null);
+        $middleware->alias([
+            'check.plan' => CheckUserHavePlan::class,
+        ]);
     })
     ->withSchedule(function (Schedule $schedule) {
         $schedule->command('subscription:check-end-trial-task')->dailyAt('01:00');

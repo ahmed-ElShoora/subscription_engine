@@ -1,0 +1,346 @@
+{
+  "info": {
+    "_postman_id": "90b4763a-f5ed-468d-ba27-550dd12ef968",
+    "name": "subscription_engine",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "43598260"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "register",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Ahmed Sami",
+                  "type": "text",
+                  "uuid": "d0e2a632-b799-4c5e-8e8b-46feae1c57a0"
+                },
+                {
+                  "key": "email",
+                  "value": "ahmed1@test.com",
+                  "type": "text",
+                  "uuid": "64bca14f-73b0-4158-aa59-0c3d93e16855"
+                },
+                {
+                  "key": "password",
+                  "value": "11111111",
+                  "type": "text",
+                  "uuid": "3648f9c5-f467-4b48-b965-2e29caab1d4c"
+                },
+                {
+                  "key": "password_confirmation",
+                  "value": "11111111",
+                  "type": "text",
+                  "uuid": "f6d91502-f9ef-4aaf-8796-343d88e67812"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_link}}/register",
+              "host": [
+                "{{base_link}}"
+              ],
+              "path": [
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "ahmed3@test.com",
+                  "type": "text",
+                  "uuid": "64bca14f-73b0-4158-aa59-0c3d93e16855"
+                },
+                {
+                  "key": "password",
+                  "value": "11111111",
+                  "type": "text",
+                  "uuid": "3648f9c5-f467-4b48-b965-2e29caab1d4c"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_link}}/login",
+              "host": [
+                "{{base_link}}"
+              ],
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "me",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_link}}/me",
+              "host": [
+                "{{base_link}}"
+              ],
+              "path": [
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "logout",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_link}}/logout",
+              "host": [
+                "{{base_link}}"
+              ],
+              "path": [
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "plans",
+      "item": [
+        {
+          "name": "plans",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_link}}/plans?currency=aed",
+              "host": [
+                "{{base_link}}"
+              ],
+              "path": [
+                "plans"
+              ],
+              "query": [
+                {
+                  "key": "currency",
+                  "value": "aed",
+                  "description": "this in not reqired and default value is USD , use can send [USD,AED,EGP]"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Transactions",
+      "item": [
+        {
+          "name": "transactions",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_link}}/transactions",
+              "host": [
+                "{{base_link}}"
+              ],
+              "path": [
+                "transactions"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "purchase",
+      "item": [
+        {
+          "name": "purchase",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "type",
+                  "value": "purchase",
+                  "description": "type = [trial,purchase] , if select trail send plan_id , if send purchase all keys are required",
+                  "type": "text",
+                  "uuid": "3900603d-653c-49f4-a86d-200179ffb3a1"
+                },
+                {
+                  "key": "plan_id",
+                  "value": "1",
+                  "type": "text",
+                  "uuid": "c330cef2-bcf0-4327-8dd6-90ee7c031d03"
+                },
+                {
+                  "key": "time",
+                  "value": "year",
+                  "description": "[month,year]",
+                  "type": "text",
+                  "uuid": "28d766bc-1dab-48ad-9582-c631d7591f7b"
+                },
+                {
+                  "key": "card_number",
+                  "value": "1111111111111111",
+                  "description": "write [1111111111111111] for true pay",
+                  "type": "text",
+                  "uuid": "7c5a2692-efef-4fb0-98bf-762a87333998"
+                },
+                {
+                  "key": "expiry_month",
+                  "value": "12",
+                  "description": "write [12] for true pay",
+                  "type": "text",
+                  "uuid": "08b6e57d-9657-4b85-a169-799a99437ce9"
+                },
+                {
+                  "key": "expiry_year",
+                  "value": "2030",
+                  "description": "write [2030] for true pay",
+                  "type": "text",
+                  "uuid": "3fd2cdd6-549d-40f3-a230-a49a136fd97d"
+                },
+                {
+                  "key": "cvv",
+                  "value": "111",
+                  "description": "write [111] for true pay",
+                  "type": "text",
+                  "uuid": "0e15cb0f-55ee-4953-a1fe-b50fab9a7fe5"
+                },
+                {
+                  "key": "currency",
+                  "value": "EGP",
+                  "description": "[USD,EGP,AED]",
+                  "type": "text",
+                  "uuid": "31d8ec0c-365f-4df4-b113-24665b556147"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_link}}/purchase-plan",
+              "host": [
+                "{{base_link}}"
+              ],
+              "path": [
+                "purchase-plan"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "TestUserHavePlan",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{auth_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_link}}/test-plan",
+          "host": [
+            "{{base_link}}"
+          ],
+          "path": [
+            "test-plan"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
