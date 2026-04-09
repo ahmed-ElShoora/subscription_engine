@@ -17,26 +17,23 @@ class PurchaseController extends Controller
     }
     public function purchasePlan(PurchaseRequest $request)
     {
-        $result = $this->purchaseService->proccesPurchase($request->validated());
-        if($request->type == "trial"){
-            if($result['status']){
-                return $this->successResponse(
-                    new UserResource($result['data']),
-                    $result['message'],
-                    201
-                );
-            }
+        $result = $this->purchaseService->process(
+            user: $request->user(),
+            data: $request->validated()
+        );
+
+        if (! $result['status']) {
             return $this->errorResponse(
                 $result['message'],
                 null,
-                400
-            );
-        }else{
-            return $this->errorResponse(
-                'For non-trial purchases, please proceed to payment',
-                null,
-                400
+                $result['code'] ?? 400
             );
         }
+
+        return $this->successResponse(
+            new UserResource($result['data']),
+            $result['message'],
+            201
+        );
     }
 }

@@ -3,15 +3,19 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Plan;
 use App\Traits\ApiResponse;
+use App\Services\Plans\PlanService;
+use App\Http\Requests\PlanCurrencyRequest;
 
 class PlanController extends Controller
 {
     use ApiResponse;
-    public function __invoke()
+    public function __construct() {
+        $this->planService = new PlanService();
+    }
+    public function __invoke(PlanCurrencyRequest $request)
     {
-        $plans = Plan::select('id', 'name', 'month_price', 'year_price', 'trial_days', 'currency')->get();
+        $plans = $this->planService->getAllPlans(strtoupper($request->query('currency', 'USD')));
         return $this->successResponse($plans,'Plans retrieved successfully');
     }
 }

@@ -5,12 +5,11 @@ use App\Models\Transaction;
 
 class SimulatePaymentService
 {
-    public function processPayment(array $data): Transaction
+    public function processPayment(array $data)
     {
         $isValid = $this->validateCard($data);
-
         $payment_transaction = Transaction::create([
-            'user_id' => auth()->id(),
+            'user_id' => $data['user_id'],
             'amount' => $data['amount'],
             'currency' => $data['currency'],
             'status' => $isValid ? 'completed' : 'rejected',
