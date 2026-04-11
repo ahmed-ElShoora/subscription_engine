@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
+use App\Models\User;
 
 #[Signature('subscription:end-past-due-subscriptions-task')]
 #[Description('Check if any user subscription has been past due')]
